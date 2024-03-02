@@ -13,6 +13,8 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { createUser } from "./actions";
+import { toast } from "sonner";
 
 const formSchema = z.object({
   username: z.string().trim().min(1, {
@@ -21,27 +23,34 @@ const formSchema = z.object({
   password: z.string().trim().min(4, {
     message: "Password must be 4 characters long.",
   }),
-  comfirmPassword: z.string().trim().min(4, {
+  confirmPassword: z.string().trim().min(4, {
     message: "Password must be 4 characters long.",
   }),
 });
 
 export default function SignUpForm() {
-  // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       username: "",
       password: "",
-      comfirmPassword: "",
+      confirmPassword: "",
     },
   });
 
-  // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
+    const { username, password, confirmPassword } = values;
+
+    if (password === confirmPassword) {
+      const formData = {
+        username,
+        password,
+      };
+
+      createUser(formData);
+    } else {
+      toast("Passwords do not match.");
+    }
   }
 
   return (
@@ -87,7 +96,7 @@ export default function SignUpForm() {
 
         <FormField
           control={form.control}
-          name="comfirmPassword"
+          name="confirmPassword"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Confirm Password</FormLabel>
