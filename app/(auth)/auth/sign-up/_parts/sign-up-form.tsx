@@ -15,13 +15,13 @@ import {
 import { Input } from "@/components/ui/input";
 
 const formSchema = z.object({
-  username: z.string().min(1, {
+  username: z.string().trim().min(1, {
     message: "Username can not be empty.",
   }),
-  password: z.string().min(4, {
+  password: z.string().trim().min(4, {
     message: "Password must be 4 characters long.",
   }),
-  comfirmPassword: z.string().min(4, {
+  comfirmPassword: z.string().trim().min(4, {
     message: "Password must be 4 characters long.",
   }),
 });
