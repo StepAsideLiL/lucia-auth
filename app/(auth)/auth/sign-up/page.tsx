@@ -1,5 +1,12 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import SignUpForm from "./_parts/sign-up-form";
+import Link from "next/link";
 
 export default function Page() {
   return (
@@ -14,6 +21,18 @@ export default function Page() {
         <CardContent>
           <SignUpForm />
         </CardContent>
+
+        <CardFooter>
+          <p>
+            Have an account?{" "}
+            <Link
+              href={"/auth/sign-in"}
+              className="font-semibold text-sm hover:underline"
+            >
+              Sign In
+            </Link>
+          </p>
+        </CardFooter>
       </Card>
     </main>
   );
