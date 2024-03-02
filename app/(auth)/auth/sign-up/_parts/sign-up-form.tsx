@@ -27,10 +27,10 @@ const formSchema = z.object({
     .refine((u) => /^[a-z0-9_-]+$/.test(u), {
       message: "Username can not contain special characters",
     }),
-  password: z.string().trim().min(4, {
+  password: z.string().min(4, {
     message: "Password must be 4 characters long.",
   }),
-  confirmPassword: z.string().trim().min(4, {
+  confirmPassword: z.string().min(4, {
     message: "Password must be 4 characters long.",
   }),
 });
