@@ -17,9 +17,16 @@ import { createUser } from "./actions";
 import { toast } from "sonner";
 
 const formSchema = z.object({
-  username: z.string().trim().min(1, {
-    message: "Username can not be empty.",
-  }),
+  username: z
+    .string()
+    .trim()
+    .min(1, {
+      message: "Username can not be empty.",
+    })
+    .max(31, { message: "Username can not be more than 31 characters long." })
+    .refine((u) => /^[a-z0-9_-]+$/.test(u), {
+      message: "Username can not contain special characters",
+    }),
   password: z.string().trim().min(4, {
     message: "Password must be 4 characters long.",
   }),
