@@ -29,7 +29,7 @@ export default function Page() {
               href={"/auth/sign-up"}
               className="font-semibold text-sm hover:underline"
             >
-              Sign In
+              Create an account
             </Link>
           </p>
         </CardFooter>
