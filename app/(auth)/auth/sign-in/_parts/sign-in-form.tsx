@@ -7,7 +7,6 @@ import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -16,12 +15,8 @@ import {
 import { Input } from "@/components/ui/input";
 
 const formSchema = z.object({
-  username: z.string().min(2, {
-    message: "Username must be at least 2 characters.",
-  }),
-  password: z.string().min(2, {
-    message: "Username must be at least 2 characters.",
-  }),
+  username: z.string({ required_error: "Username can not be empty." }),
+  password: z.string({ required_error: "Password can not be empty." }),
 });
 
 export default function SignInForm() {
