@@ -13,18 +13,18 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { signInUser } from "./actions";
 
 const formSchema = z.object({
-  username: z.string().trim().min(1, {
+  username: z.string().min(1, {
     message: "Username can not be empty.",
   }),
-  password: z.string().trim().min(1, {
+  password: z.string().min(1, {
     message: "Password can not be empty.",
   }),
 });
 
 export default function SignInForm() {
-  // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -33,11 +33,8 @@ export default function SignInForm() {
     },
   });
 
-  // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
+    signInUser(values);
   }
 
   return (
