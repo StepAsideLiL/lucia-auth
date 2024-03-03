@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { signInUser } from "./actions";
+import { toast } from "sonner";
 
 const formSchema = z.object({
   username: z.string().min(1, {
@@ -33,8 +34,17 @@ export default function SignInForm() {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    signInUser(values);
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    const res = await signInUser(values);
+    if (res?.error === "Invalid username") {
+      toast.error("Invalid username");
+    }
+    if (res?.error === "Invalid password") {
+      toast.error("Invalid password");
+    }
+    if (res?.error === "Incorrect username or password") {
+      toast.error("Incorrect username or password");
+    }
   }
 
   return (
