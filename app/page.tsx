@@ -11,7 +11,15 @@ export default async function Home() {
     <main className="min-h-screen grid place-content-center gap-2">
       {user ? (
         <>
-          <h1>User Name: {user.username}</h1>
+          <h1>
+            User Name:{" "}
+            <Link
+              href={`/${user.username}`}
+              className="font-bold hover:underline"
+            >
+              {user.username}
+            </Link>
+          </h1>
 
           <Logout />
         </>
