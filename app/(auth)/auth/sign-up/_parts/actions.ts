@@ -16,6 +16,7 @@ export async function createUser(data: FormData) {
 
   if (
     typeof username !== "string" ||
+    username === "info" ||
     username.length < 1 ||
     username.length > 31 ||
     !/^[a-z0-9_-]+$/.test(username)
