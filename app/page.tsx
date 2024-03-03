@@ -5,7 +5,6 @@ import Logout from "@/components/logout";
 
 export default async function Home() {
   const { user } = await validateRequest();
-  console.log(user);
 
   return (
     <main className="min-h-screen grid place-content-center gap-2">
