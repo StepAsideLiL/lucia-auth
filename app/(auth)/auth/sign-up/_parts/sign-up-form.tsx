@@ -68,7 +68,7 @@ export default function SignUpForm() {
         toast.error("Invalid password.");
       }
     } else {
-      toast("Passwords do not match.");
+      toast.error("Passwords do not match.");
     }
   }
 
