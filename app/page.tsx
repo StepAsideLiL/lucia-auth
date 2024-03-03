@@ -34,6 +34,10 @@ export default async function Home() {
           </Button>
         </>
       )}
+
+      <Button variant={"outline"} asChild>
+        <Link href={"/info"}>Info</Link>
+      </Button>
     </main>
   );
 }
