@@ -67,7 +67,7 @@ export default function SignInForm() {
               <FormLabel>Password</FormLabel>
               <FormControl>
                 <Input
-                  type="text"
+                  type="password"
                   placeholder="Password"
                   autoComplete="off"
                   {...field}
