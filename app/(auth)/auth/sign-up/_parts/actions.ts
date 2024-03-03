@@ -27,7 +27,7 @@ export async function createUser(data: FormData) {
 
   if (
     typeof password !== "string" ||
-    password.length < 4 ||
+    password.length <= 4 ||
     password.length > 255
   ) {
     return {
