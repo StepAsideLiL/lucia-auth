@@ -51,7 +51,7 @@ export default function SignUpForm() {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  async function onSubmit(values: z.infer<typeof formSchema>) {
     const { username, password, confirmPassword } = values;
 
     if (password === confirmPassword) {
@@ -60,7 +60,13 @@ export default function SignUpForm() {
         password,
       };
 
-      createUser(formData);
+      const res = await createUser(formData);
+      if (res?.error === "Invalid username.") {
+        toast.error("Invalid username.");
+      }
+      if (res?.error === "Invalid password.") {
+        toast.error("Invalid password.");
+      }
     } else {
       toast("Passwords do not match.");
     }
