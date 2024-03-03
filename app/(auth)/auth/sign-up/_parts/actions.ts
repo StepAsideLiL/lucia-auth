@@ -31,7 +31,7 @@ export async function createUser(data: FormData) {
     password.length > 255
   ) {
     return {
-      error: "Invalid password",
+      error: "Invalid password.",
     };
   }
 
